@@ -1,5 +1,3 @@
-import decimal
-
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from src.schemas import CurrencySchema, CurrencyConvertSchema
@@ -7,11 +5,6 @@ from db import get_db
 from src import manager
 
 router = APIRouter()
-
-
-@router.get(path="/upload_to_database", status_code=200)
-async def load_all_currency(db: Session = Depends(get_db)):
-    await manager.load_all_currencies(db=db)
 
 
 @router.get(path="/get_all_currency_rates", response_model=list[CurrencySchema])

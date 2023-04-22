@@ -1,12 +1,12 @@
 # Currency Converter Setup
 
-1. Проставить переменные в .env (API_KEY брать с https://exchangeratesapi.io/)
+1. Проставить переменные в .env (использовать базу postgresql, API_KEY брать с https://exchangeratesapi.io/)
 2. Ввести в терминал 'alembic upgrade head'
-3. Запустить приложение командой 'uvicorn main:app --reload'
-4. ! Дернуть роут upload_to_database прежде чем пытаться что-то конвертировать
-# Примеры
+3. Запустить приложение командой 'uvicorn main:app --reload' и пользоваться
 
 
-<img height="400" src="https://github.com/Lufa1u/Currency_Converter/blob/main/images/Screenshot_3.png?raw=true" title="Upload currency to database" width="600"/>
-<img height="400" src="https://github.com/Lufa1u/Currency_Converter/blob/main/images/Screenshot_2.png?raw=true" title="Get all currencies" width="600"/>
-<img height="400" src="https://github.com/Lufa1u/Currency_Converter/blob/main/images/Screenshot_1.png?raw=true" title="Convert currencies" width="600"/>
+# Получение всех курсов валют:
+<img height="400" src="https://github.com/Lufa1u/Currency_Converter/blob/main/images/Screenshot_2.png?raw=true" width="600"/>
+
+# Конвертирование валют:
+<img height="400" src="https://github.com/Lufa1u/Currency_Converter/blob/main/images/Screenshot_1.png?raw=true" width="600"/>
