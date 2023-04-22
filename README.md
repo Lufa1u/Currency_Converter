@@ -1,5 +1,5 @@
 # Currency Converter Setup
-0. terminal > pip install requirements.txt
+0. terminal > pip install -r requirements.txt
 1. set up a ".env" file (database: postgresql, API_KEY: https://exchangeratesapi.io/)
 2. terminal > alembic upgrade head
 3. terminal > uvicorn main:app --reload
