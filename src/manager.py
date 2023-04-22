@@ -9,20 +9,23 @@ from fastapi import HTTPException
 
 
 async def convert_currency(convert: CurrencyConvertSchema, db: Session):
-    # что бы сразу работало
+    # что бы сразу работало, можно убрать условие если всегда нужны актуальные данные
     if not db.query(CurrencyConverter).all():
         await load_all_currencies(db=db)
 
+    amount = abs(convert.amount)
     rates = dict([item for item in db.query(CurrencyConverter.rate, CurrencyConverter.code).filter(
         or_(CurrencyConverter.code == convert.source, CurrencyConverter.code == convert.target)).all()])
     rates = dict(zip(rates.values(), rates.keys()))
-    if convert.amount:
-        return convert.amount * ((convert.amount * rates[convert.target]) / (convert.amount * rates[convert.source]))
-    raise HTTPException(status_code=422, detail="amount can't be zero!")
+
+    if amount and convert.source in [*rates.keys()] and convert.target in [*rates.keys()]:
+        return amount * ((amount * rates[convert.target]) / (amount * rates[convert.source]))
+    raise HTTPException(status_code=422, detail="Amount can't be zero!") if not amount\
+        else HTTPException(status_code=404, detail="Currency not found!")
 
 
 async def get_all_currency_rates(db: Session):
-    # что бы сразу работало
+    # что бы сразу работало, можно убрать условие если всегда нужны актуальные данные
     if not db.query(CurrencyConverter).all():
         await load_all_currencies(db=db)
 
