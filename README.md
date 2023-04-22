@@ -1,7 +1,7 @@
 # Currency Converter Setup
-
+0. terminal > pip install requirements.txt
 1. Проставить переменные в .env (использовать базу postgresql, API_KEY брать с https://exchangeratesapi.io/)
-2. Ввести в терминал 'alembic upgrade head'
+2. terminal > 'alembic upgrade head'
 3. Запустить приложение командой 'uvicorn main:app --reload' и пользоваться
 
 
