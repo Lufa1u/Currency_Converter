@@ -5,6 +5,7 @@ import config
 from src.models import CurrencyConverter
 import json
 from src.schemas import CurrencySchema, CurrencyConvertSchema
+from fastapi import HTTPException
 
 
 async def convert_currency(convert: CurrencyConvertSchema, db: Session):
@@ -15,7 +16,9 @@ async def convert_currency(convert: CurrencyConvertSchema, db: Session):
     rates = dict([item for item in db.query(CurrencyConverter.rate, CurrencyConverter.code).filter(
         or_(CurrencyConverter.code == convert.source, CurrencyConverter.code == convert.target)).all()])
     rates = dict(zip(rates.values(), rates.keys()))
-    return convert.amount * ((convert.amount * rates[convert.target]) / (convert.amount * rates[convert.source]))
+    if convert.amount:
+        return convert.amount * ((convert.amount * rates[convert.target]) / (convert.amount * rates[convert.source]))
+    raise HTTPException(status_code=422, detail="amount can't be zero!")
 
 
 async def get_all_currency_rates(db: Session):
