@@ -1,10 +1,10 @@
 # Currency Converter Setup
 
-1. Проставить переменные в .env
+1. Проставить переменные в .env (API_KEY брать с https://exchangeratesapi.io/)
 2. Ввести в терминал 'alembic upgrade head'
 3. Запустить приложение командой 'uvicorn main:app --reload'
-4. Дернуть роут upload_to_database
-- Примеры
+4. ! Дернуть роут upload_to_database прежде чем пытаться что-то конвертировать
+# Примеры
 
 
 <img height="400" src="https://github.com/Lufa1u/Currency_Converter/blob/main/images/Screenshot_3.png?raw=true" title="Upload currency to database" width="600"/>
