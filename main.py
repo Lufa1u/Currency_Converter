@@ -1,8 +1,14 @@
 from fastapi import FastAPI
 from src import routes
+from src.containers import CurrencyContainer
 
 
-app = FastAPI()
+def create_app():
+    container = CurrencyContainer()
+    app = FastAPI()
+    app.container = container
+    app.include_router(routes.router, prefix="/currency_converter", tags=["CURRENCY_CONVERTER"])
+    return app
 
 
-app.include_router(routes.router, prefix="/currency_converter", tags=["CURRENCY_CONVERTER"])
+app = create_app()
